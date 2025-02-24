@@ -1135,6 +1135,7 @@ GameObject:
   - component: {fileID: 4428464625242348556}
   - component: {fileID: 5634100277255320309}
   - component: {fileID: 7718412122244957587}
+  - component: {fileID: 2976725369447486612}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -1244,10 +1245,10 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5456950182733998875}
-        m_TargetAssemblyTypeName: KurtCobain, Assembly-CSharp
-        m_MethodName: SetSpawnIndex
-        m_Mode: 3
+      - m_Target: {fileID: 2976725369447486612}
+        m_TargetAssemblyTypeName: InfoComponent, Assembly-CSharp
+        m_MethodName: SetValues
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1256,21 +1257,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5456950182733998875}
-        m_TargetAssemblyTypeName: KurtCobain, Assembly-CSharp
-        m_MethodName: KillYourself
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   onReleased:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2976725369447486612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372135800204983783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49c0e7d060aeef99901974c16eb42b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameString: Slika
+  descriptionString: AAAAAAAAAAAAAAAAAAAAA
 --- !u!1 &4459127389374867760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,6 +1967,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4762239851910345287}
     m_Modifications:
+    - target: {fileID: 1099110265928227472, guid: bc5617f1bbd0828c382f96ccf48c92e1,
+        type: 3}
+      propertyPath: m_Name
+      value: Boat Cube 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1291647056995502516, guid: bc5617f1bbd0828c382f96ccf48c92e1,
         type: 3}
       propertyPath: m_Name
@@ -2024,6 +2032,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 56d9dc7be9e1d3ef7ae4a768a6948b2d, type: 2}
+    - target: {fileID: 2192447298357221081, guid: bc5617f1bbd0828c382f96ccf48c92e1,
+        type: 3}
+      propertyPath: m_Name
+      value: Boat Cube 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4125228998457724158, guid: bc5617f1bbd0828c382f96ccf48c92e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2282,7 +2295,14 @@ PrefabInstance:
       propertyPath: m_Renderer
       value: 
       objectReference: {fileID: 4104008123840924509}
-    m_RemovedComponents: []
+    - target: {fileID: 6150859564725413516, guid: ebd7292e888c84f05924605e51048072,
+        type: 3}
+      propertyPath: m_InteractableSource
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2996392715678626154, guid: ebd7292e888c84f05924605e51048072, type: 3}
+    - {fileID: 4719697340578916628, guid: ebd7292e888c84f05924605e51048072, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3435864238947048048, guid: ebd7292e888c84f05924605e51048072, type: 3}
     m_AddedGameObjects:

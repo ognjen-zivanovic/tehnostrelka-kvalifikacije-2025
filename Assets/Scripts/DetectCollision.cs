@@ -12,7 +12,6 @@ public class DetectCollision : MonoBehaviour
 
     public ObstacleType obstacleType;
     void OnCollisionEnter(Collision collision) {
-        Debug.Log(collision.gameObject.name + " collided with " + gameObject.name);
         if (collision.gameObject.tag == "Boat") {
             GameObject boatGameManager = GameObject.FindGameObjectWithTag("BoatGameManager");
             if (obstacleType == ObstacleType.Wood) {
