@@ -5,7 +5,7 @@ using TMPro;
 
 public class BoatGameManager : MonoBehaviour
 {
-    public static int numLives = 333333;
+    public static int numLives = 3;
     public static int numPoints = 0;
 
     [SerializeField] GameObject[] livesIndicatorObjects;
