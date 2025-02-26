@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class BoatGameManager : MonoBehaviour
 {
@@ -9,12 +10,15 @@ public class BoatGameManager : MonoBehaviour
     public static int numPoints = 0;
 
     [SerializeField] GameObject[] livesIndicatorObjects;
+    [SerializeField] GameObject[] crateImages;
     [SerializeField] GameObject endScreenObject;
+    [SerializeField] GameObject gameScreenObject;
     [SerializeField] GameObject obstacleContainer;
     [SerializeField] GameObject pool;
 
     [SerializeField] TMP_Text gameOverText;
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text lifeText;
 
     public void ResetGame() {
         numLives = 3;
@@ -29,14 +33,17 @@ public class BoatGameManager : MonoBehaviour
         {
             Destroy(obstacle.gameObject);
         }
+        for (int i = 0; i < crateImages.Length; i++) {
+            crateImages[i].GetComponent<RawImage>().color = new Color(85, 85, 85);
+        }
         endScreenObject.SetActive(false);
-        scoreText.gameObject.SetActive(true);
+        gameScreenObject.SetActive(true);
     }
 
     public void EndGame() {
         pool.SetActive(false);
         endScreenObject.SetActive(true);
-        scoreText.gameObject.SetActive(false);
+        gameScreenObject.SetActive(false);
         gameOverText.text = "Game Over, your score was: " + numPoints;
     }
 
@@ -47,13 +54,20 @@ public class BoatGameManager : MonoBehaviour
             livesIndicatorObjects[numLives].SetActive(false);
         }
 
+        if (numLives >= 0) {
+            lifeText.text = "Lives: " + numLives + "/" + livesIndicatorObjects.Length;
+        }
+
         if (numLives <= 0) { 
             EndGame();
         }
     }
 
     public void AddPoint() {
+        if (numPoints < crateImages.Length) {
+            crateImages[numPoints].GetComponent<RawImage>().color = Color.white;
+        }
         numPoints++;
-        scoreText.text = "Score: " + numPoints;
+        scoreText.text = "Crates " + numPoints + "/" + crateImages.Length;
     }
 }

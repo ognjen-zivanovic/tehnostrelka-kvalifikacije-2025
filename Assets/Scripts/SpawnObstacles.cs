@@ -34,6 +34,7 @@ public class SpawnObstacles : MonoBehaviour
             GameObject newObject = Instantiate(obstaclePrefab, container.transform);
             newObject.transform.localPosition = position;
             newObject.transform.localRotation = rotation;
+            Debug.Log("Spawned: " + newObject.name);
         }
     }
 }
