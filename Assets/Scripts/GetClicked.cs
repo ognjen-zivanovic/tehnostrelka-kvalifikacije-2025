@@ -24,7 +24,7 @@ public class GetClicked : MonoBehaviour
         else if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasReleasedThisFrame)
         {
             Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-            CastRay(touchPosition, true);
+            CastRay(touchPosition, false);
         }
     }
 

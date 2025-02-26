@@ -25,6 +25,9 @@ public class SpawnObstacles : MonoBehaviour
             timeRemainingUntillSpawn = Random.Range(minTime, maxTime);
             // position is between the bounds defined in WaterBoundsInfo
             Vector3 position = new Vector3(Random.Range(WaterBoundsInfo.minX, WaterBoundsInfo.maxX), 0.0f, Random.Range(WaterBoundsInfo.minZ, WaterBoundsInfo.maxZ));
+            while (position.x * position.x + position.z * position.z < 0.5 * 0.5) {
+                position = new Vector3(Random.Range(WaterBoundsInfo.minX, WaterBoundsInfo.maxX), 0.0f, Random.Range(WaterBoundsInfo.minZ, WaterBoundsInfo.maxZ));
+            }
             // rotation is random
             Quaternion rotation = Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f));
             
