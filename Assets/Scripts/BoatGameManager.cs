@@ -23,6 +23,8 @@ public class BoatGameManager : MonoBehaviour
 
     [SerializeField] AudioSource crateSound;
     [SerializeField] AudioSource obstacleSound;
+    [SerializeField] AudioSource winSound;
+    [SerializeField] AudioSource loseSound;
 
     public void ResetGame() {
         numLives = 3;
@@ -54,14 +56,17 @@ public class BoatGameManager : MonoBehaviour
         if (numLives <= 0) {
             endText.text = "GAME OVER\nИГРА ОКОНЧЕНА";
             endText.color = Color.red;
+            loseSound.Play();
         }    
         else if (numPoints >= crateImages.Length) {
             endText.text = "YOU WIN\nВЫ ПОБЕДИЛИ";
             endText.color = Color.green;
+            winSound.Play();
         }
         else {
             endText.text = "GAME OVER\nИГРА ОКОНЧЕНА";
             endText.color = Color.red;
+            loseSound.Play();
         }
     }
 
