@@ -5,6 +5,8 @@ using UnityEngine;
 public class InfoComponent : MonoBehaviour
 {
     public string nameString;
+    
+    [TextArea(2, 2)]
     public string descriptionString;
 
     public void SetValues() {

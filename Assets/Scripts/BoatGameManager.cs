@@ -16,14 +16,13 @@ public class BoatGameManager : MonoBehaviour
     [SerializeField] GameObject obstacleContainer;
     [SerializeField] GameObject pool;
 
-    [SerializeField] TMP_Text gameOverText;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text lifeText;
+    [SerializeField] TMP_Text endText;
 
     public void ResetGame() {
         numLives = 3;
         numPoints = 0;
-        gameOverText.text = "";
         for (int i = 0; i < numLives; i++) {
             livesIndicatorObjects[i].SetActive(true);
         }
@@ -34,17 +33,32 @@ public class BoatGameManager : MonoBehaviour
             Destroy(obstacle.gameObject);
         }
         for (int i = 0; i < crateImages.Length; i++) {
-            crateImages[i].GetComponent<RawImage>().color = new Color(85, 85, 85);
+            crateImages[i].GetComponent<RawImage>().color = new Color(0.33f, 0.33f, 0.33f, 1.0f);
         }
         endScreenObject.SetActive(false);
         gameScreenObject.SetActive(true);
+        lifeText.text = "Lives: " + numLives + "/" + livesIndicatorObjects.Length;
+        scoreText.text = "Crates " + numPoints + "/" + crateImages.Length;
+        GameObject uiManager = GameObject.FindGameObjectWithTag("UIManager");
+        uiManager.GetComponent<UIManager>().SetValues("", "");
     }
 
     public void EndGame() {
         pool.SetActive(false);
         endScreenObject.SetActive(true);
         gameScreenObject.SetActive(false);
-        gameOverText.text = "Game Over, your score was: " + numPoints;
+        if (numLives <= 0) {
+            endText.text = "GAME\nOVER";
+            endText.color = Color.red;
+        }    
+        else if (numPoints >= crateImages.Length) {
+            endText.text = "YOU\nWIN";
+            endText.color = Color.green;
+        }
+        else {
+            endText.text = "GAME\nOVER";
+            endText.color = Color.red;
+        }
     }
 
     public void RemoveLife() {
@@ -64,6 +78,7 @@ public class BoatGameManager : MonoBehaviour
     }
 
     public void AddPoint() {
+        Debug.Log(numPoints);
         if (numPoints < crateImages.Length) {
             crateImages[numPoints].GetComponent<RawImage>().color = Color.white;
         }
