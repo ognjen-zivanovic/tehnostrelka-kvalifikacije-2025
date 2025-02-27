@@ -20,6 +20,10 @@ public class BoatGameManager : MonoBehaviour
     [SerializeField] TMP_Text lifeText;
     [SerializeField] TMP_Text endText;
 
+
+    [SerializeField] AudioSource crateSound;
+    [SerializeField] AudioSource obstacleSound;
+
     public void ResetGame() {
         numLives = 3;
         numPoints = 0;
@@ -37,8 +41,8 @@ public class BoatGameManager : MonoBehaviour
         }
         endScreenObject.SetActive(false);
         gameScreenObject.SetActive(true);
-        lifeText.text = "Lives: " + numLives + "/" + livesIndicatorObjects.Length;
-        scoreText.text = "Crates " + numPoints + "/" + crateImages.Length;
+        lifeText.text = "Lives (Жизни) " + numLives + "/" + livesIndicatorObjects.Length;
+        scoreText.text = "Crates (Ящики) " + numPoints + "/" + crateImages.Length;
         GameObject uiManager = GameObject.FindGameObjectWithTag("UIManager");
         uiManager.GetComponent<UIManager>().SetValues("", "");
     }
@@ -48,28 +52,29 @@ public class BoatGameManager : MonoBehaviour
         endScreenObject.SetActive(true);
         gameScreenObject.SetActive(false);
         if (numLives <= 0) {
-            endText.text = "GAME\nOVER";
+            endText.text = "GAME OVER\nИГРА ОКОНЧЕНА";
             endText.color = Color.red;
         }    
         else if (numPoints >= crateImages.Length) {
-            endText.text = "YOU\nWIN";
+            endText.text = "YOU WIN\nВЫ ПОБЕДИЛИ";
             endText.color = Color.green;
         }
         else {
-            endText.text = "GAME\nOVER";
+            endText.text = "GAME OVER\nИГРА ОКОНЧЕНА";
             endText.color = Color.red;
         }
     }
 
     public void RemoveLife() {
         numLives--;
+        obstacleSound.Play();
         
         if (numLives >= 0 && numLives < livesIndicatorObjects.Length) {
             livesIndicatorObjects[numLives].SetActive(false);
         }
 
         if (numLives >= 0) {
-            lifeText.text = "Lives: " + numLives + "/" + livesIndicatorObjects.Length;
+            lifeText.text = "Lives (Жизни) " + numLives + "/" + livesIndicatorObjects.Length;
         }
 
         if (numLives <= 0) { 
@@ -78,11 +83,11 @@ public class BoatGameManager : MonoBehaviour
     }
 
     public void AddPoint() {
-        Debug.Log(numPoints);
+        crateSound.Play();
         if (numPoints < crateImages.Length) {
             crateImages[numPoints].GetComponent<RawImage>().color = Color.white;
         }
         numPoints++;
-        scoreText.text = "Crates " + numPoints + "/" + crateImages.Length;
+        scoreText.text = "Crates (Ящики) " + numPoints + "/" + crateImages.Length;
     }
 }
